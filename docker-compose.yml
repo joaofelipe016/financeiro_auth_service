@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-financeiro-web
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: cto14porta7
+      POSTGRES_DB: controle_financeiro
+    ports:
+      - "15432:5432"
+    volumes:
+      - financeiro_data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+    restart: always
+
+volumes:
+  financeiro_data:
+    driver: local
+
+networks:
+  postgres-network:
+    driver: bridge
